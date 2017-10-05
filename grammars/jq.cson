@@ -60,33 +60,14 @@
     'beginCaptures':
       '0':
         'name': 'storage.type.function.jq'
-    'end': ':'
+    'end': '([a-zA-Z_]\\w*::)*[a-zA-Z_]\\w*'
     'endCaptures':
       '0':
-        'name': 'punctuation.separator.jq'
+        'name': 'entity.name.function.jq'
     'name': 'meta.function.jq'
     'patterns': [
       {
-        'match': '([a-zA-Z_]\\w*::)*[a-zA-Z_]\\w*'
-        'name': 'entity.name.function.jq'
-      }
-      {
-        'begin': '\\('
-        'captures':
-          '0':
-            'name': 'punctuation.bracket.round.jq'
-        'end': '\\)'
-        'name': 'meta.function.parameters.jq'
-        'patterns': [
-          {
-            'match': '\\$?([a-zA-Z_]\\w*::)*[a-zA-Z_]\\w*'
-            'name': 'variable.parameter.jq'
-          }
-          {
-            'match': ';'
-            'name': 'punctuation.separator.jq'
-          }
-        ]
+        'include': '#comment'
       }
     ]
   'identifier':
