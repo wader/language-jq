@@ -8,6 +8,9 @@
     'include': '#comment'
   }
   {
+    'include': '#object'
+  }
+  {
     'include': '#function'
   }
   {
@@ -29,7 +32,7 @@
     'include': '#keyword'
   }
   {
-    'include': '#identifier'
+    'include': '#filter'
   }
   {
     'include': '#number'
@@ -52,6 +55,9 @@
   'field':
     'match': '\\.[a-zA-Z_]\\w*'
     'name': 'entity.other.attribute-name.jq'
+  'filter':
+    'match': '([a-zA-Z_]\\w*::)*[a-zA-Z_]\\w*'
+    'name': 'support.function.jq'
   'format':
     'match': '@\\w+'
     'name': 'constant.other.symbol.jq'
@@ -69,16 +75,66 @@
       {
         'include': '#comment'
       }
+      {
+        'match': '\\S+'
+        'name': 'invalid.illegal.identifier.jq'
+      }
     ]
-  'identifier':
-    'match': '([a-zA-Z_]\\w*::)*[a-zA-Z_]\\w*'
-    'name': 'meta.identifier.jq'
   'keyword':
     'match': '(?<!\\.)\\b(and|as|break|catch|elif|else|end|foreach|if|import|include|label|module|or|reduce|then|try)(?!\\s*:)\\b'
     'name': 'keyword.control.jq'
   'number':
     'match': '([0-9.]{2,}|[0-9]+)([eE][+-]?[0-9]+)?'
     'name': 'constant.numeric.jq'
+  'object':
+    'begin': '{'
+    'captures':
+      '0':
+        'name': 'punctuation.bracket.curly.jq'
+    'end': '}'
+    'name': 'meta.object.jq'
+    'patterns': [
+      {
+        'include': '#comment'
+      }
+      {
+        'include': '#string'
+      }
+      {
+        'match': '([a-zA-Z_]\\w*::)*[a-zA-Z_]\\w*'
+        'name': 'entity.other.attribute-name.id.jq'
+      }
+      {
+        'begin': '\\('
+        'captures':
+          '0':
+            'name': 'punctuation.bracket.round.jq'
+        'end': '\\)'
+        'patterns': [
+          {
+            'include': '#self_in_round_brackets'
+          }
+        ]
+      }
+      {
+        'begin': ':'
+        'captures':
+          '0':
+            'name': 'punctuation.separator.jq'
+        'end': ',|(?=})'
+        'patterns': [
+          'include': '$self'
+        ]
+      }
+      {
+        'match': ','
+        'name': 'punctuation.separator.jq'
+      }
+      {
+        'match': '\\S+'
+        'name': 'invalid.illegal.identifier.jq'
+      }
+    ]
   'operator':
     'match': '\\.\\.?|\\?|==?|//=?|\\|=?|\\+=?|-=?|\\*=?|/=?|%=?|!=|<=?|>=?'
     'name': 'keyword.operator.jq'
@@ -93,12 +149,26 @@
         'name': 'punctuation.bracket.square.jq'
       }
       {
-        'match': '{|}'
-        'name': 'punctuation.bracket.square.jq'
-      }
-      {
         'match': ',|;|:'
         'name': 'punctuation.separator.jq'
+      }
+    ]
+  'self_in_round_brackets':
+    'patterns': [
+      {
+        'begin': '\\('
+        'captures':
+          '0':
+            'name': 'punctuation.bracket.round.jq'
+        'end': '\\)'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
+      }
+      {
+        'include': '$self'
       }
     ]
   'string':
@@ -127,19 +197,7 @@
     'name': 'source.jq.embedded.source'
     'patterns': [
       {
-        'begin': '\\('
-        'captures':
-          '0':
-            'name': 'punctuation.bracket.round.jq'
-        'end': '\\)'
-        'patterns': [
-          {
-            'include': '$self'
-          }
-        ]
-      }
-      {
-        'include': '$self'
+        'include': '#self_in_round_brackets'
       }
     ]
   'variable':
