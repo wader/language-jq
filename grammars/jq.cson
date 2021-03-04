@@ -5,6 +5,9 @@ fileTypes: [
 ]
 patterns: [
   {
+    include: '#array'
+  }
+  {
     include: '#comment'
   }
   {
@@ -86,6 +89,44 @@ repository:
   number:
     match: '([0-9.]{2,}|[0-9]+)([eE][+-]?[0-9]+)?'
     name: 'constant.numeric.jq'
+  array:
+    begin: '\\['
+    captures:
+      0:
+        name: 'punctuation.bracket.square.jq'
+    end: '\\]'
+    name: 'meta.array.jq'
+    patterns: [
+      {
+        include: '#comment'
+      }
+      {
+        include: '#string'
+      }
+      {
+        begin: '\\('
+        captures:
+          0:
+            name: 'punctuation.bracket.round.jq'
+        end: '\\)'
+        patterns: [
+          {
+            include: '#self_in_round_brackets'
+          }
+        ]
+      }
+      {
+        include: '$self'
+      }
+      {
+        match: ','
+        name: 'punctuation.separator.jq'
+      }
+      {
+        match: '\\S+'
+        name: 'invalid.illegal.identifier.jq'
+      }
+    ]
   object:
     begin: '{'
     captures:
@@ -99,6 +140,9 @@ repository:
       }
       {
         include: '#string'
+      }
+      {
+        include: '#variable'
       }
       {
         match: '([a-zA-Z_]\\w*::)*[a-zA-Z_]\\w*'
