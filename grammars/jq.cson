@@ -110,9 +110,8 @@ repository:
     name: 'constant.numeric.jq'
   array:
     begin: '\\['
-    captures:
-      0:
-        name: 'punctuation.bracket.square.jq'
+    beginCaptures: 0: name: 'punctuation.definition.bracket.square.begin.jq'
+    endCaptures:   0: name: 'punctuation.definition.bracket.square.end.jq'
     end: '\\]'
     name: 'meta.array.jq'
     patterns: [
@@ -124,9 +123,8 @@ repository:
       }
       {
         begin: '\\('
-        captures:
-          0:
-            name: 'punctuation.bracket.round.jq'
+        beginCaptures: 0: name: 'punctuation.definition.bracket.round.begin.jq'
+        endCaptures:   0: name: 'punctuation.definition.bracket.round.end.jq'
         end: '\\)'
         patterns: [
           {
@@ -148,9 +146,8 @@ repository:
     ]
   object:
     begin: '{'
-    captures:
-      0:
-        name: 'punctuation.bracket.curly.jq'
+    beginCaptures: 0: name: 'punctuation.definition.bracket.curly.begin.jq'
+    endCaptures:   0: name: 'punctuation.definition.bracket.curly.end.jq'
     end: '}'
     name: 'meta.object.jq'
     patterns: [
@@ -169,9 +166,8 @@ repository:
       }
       {
         begin: '\\('
-        captures:
-          0:
-            name: 'punctuation.bracket.round.jq'
+        beginCaptures: 0: name: 'punctuation.definition.bracket.round.begin.jq'
+        endCaptures:   0: name: 'punctuation.definition.bracket.round.end.jq'
         end: '\\)'
         patterns: [
           {
@@ -181,9 +177,8 @@ repository:
       }
       {
         begin: ':'
-        captures:
-          0:
-            name: 'punctuation.separator.jq'
+        beginCaptures: 0: name: 'punctuation.separator.begin.jq'
+        endCaptures:   0: name: 'punctuation.separator.end.jq'
         end: ',|(?=})'
         patterns: [
           include: '$self'
@@ -235,9 +230,8 @@ repository:
     patterns: [
       {
         begin: '\\('
-        captures:
-          0:
-            name: 'punctuation.bracket.round.jq'
+        beginCaptures: 0: name: 'punctuation.definition.bracket.round.begin.jq'
+        endCaptures:   0: name: 'punctuation.definition.bracket.round.end.jq'
         end: '\\)'
         patterns: [
           {
@@ -268,9 +262,8 @@ repository:
     ]
   string_interpolation:
     begin: '\\\\\\('
-    captures:
-      0:
-        name: 'punctuation.section.embedded.jq'
+    beginCaptures: 0: name: 'punctuation.section.embedded.jq.begin.jq'
+    endCaptures:   0: name: 'punctuation.section.embedded.jq.end.jq'
     end: '\\)'
     name: 'source.jq.embedded.source'
     patterns: [
