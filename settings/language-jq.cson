@@ -1,5 +1,5 @@
 '.source.jq':
-  'editor':
-    'commentStart': '# '
-    'increaseIndentPattern': '^.*(\\{[^}]*|\\[[^\\]]*)$|^\\s*def\\b.*:$'
-    'decreaseIndentPattern': '^\\s*[}\\]],?\\s*$'
+  editor:
+    commentStart: '# '
+    increaseIndentPattern: '^.*(\\{[^}]*|\\[[^\\]]*)$|^\\s*def\\b.*:$'
+    decreaseIndentPattern: '^\\s*[}\\]],?\\s*$'
