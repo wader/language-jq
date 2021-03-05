@@ -1,13 +1,13 @@
 {
-  "name": "language-jq",
-  "version": "0.2.0",
-  "description": "jq language support in Atom",
-  "keywords": [
-    "jq"
-  ],
-  "repository": "https://github.com/bencampion/language-jq",
-  "license": "MIT",
-  "engines": {
-    "atom": ">=1.0.0 <2.0.0"
-  }
+	"name": "language-jq",
+	"version": "0.2.0",
+	"description": "jq language support in Atom",
+	"keywords": [
+		"jq"
+	],
+	"repository": "https://github.com/bencampion/language-jq",
+	"license": "MIT",
+	"engines": {
+		"atom": ">=1.0.0 <2.0.0"
+	}
 }
