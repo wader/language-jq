@@ -3,51 +3,25 @@ name: 'jq'
 fileTypes: [
   'jq'
 ]
-patterns: [
-  {
-    include: '#comment'
-  }
-  {
-    include: '#array'
-  }
-  {
-    include: '#object'
-  }
-  {
-    include: '#function'
-  }
-  {
-    include: '#string'
-  }
-  {
-    include: '#field'
-  }
-  {
-    include: '#variable'
-  }
-  {
-    include: '#format'
-  }
-  {
-    include: '#constant'
-  }
-  {
-    include: '#keyword'
-  }
-  {
-    include: '#filter'
-  }
-  {
-    include: '#number'
-  }
-  {
-    include: '#operator'
-  }
-  {
-    include: '#punctuation'
-  }
-]
+patterns: [include: '#main']
 repository:
+  main:
+    patterns: [
+      {include: '#comment'}
+      {include: '#array'}
+      {include: '#object'}
+      {include: '#function'}
+      {include: '#string'}
+      {include: '#field'}
+      {include: '#variable'}
+      {include: '#format'}
+      {include: '#constant'}
+      {include: '#keyword'}
+      {include: '#filter'}
+      {include: '#number'}
+      {include: '#operator'}
+      {include: '#punctuation'}
+    ]
   comment:
     begin: '#'
     end: '$'
@@ -135,7 +109,7 @@ repository:
         ]
       }
       {
-        include: '$self'
+        include: '#main'
       }
       {
         match: ','
@@ -183,7 +157,7 @@ repository:
         endCaptures:   0: name: 'punctuation.separator.end.jq'
         end: ',|(?=})'
         patterns: [
-          include: '$self'
+          include: '#main'
         ]
       }
       {
@@ -237,12 +211,12 @@ repository:
         end: '\\)'
         patterns: [
           {
-            include: '$self'
+            include: '#main'
           }
         ]
       }
       {
-        include: '$self'
+        include: '#main'
       }
     ]
   string:
