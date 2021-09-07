@@ -155,7 +155,7 @@ repository:
 				beginCaptures: 0: name: 'punctuation.separator.begin.jq'
 				endCaptures:   0: name: 'punctuation.separator.end.jq'
 				patterns: [
-					include: '#main'
+					include: '#self_in_round_brackets'
 				]
 			}
 			{
