@@ -25,7 +25,7 @@ repository:
 	comment:
 		name: 'comment.line.number-sign.jq'
 		begin: '#'
-		end: '$'
+		end: '(?<!\\\\)\\r?\\n'
 	constant:
 		name: 'constant.language.jq'
 		match: '(?<!\\.)\\b(true|false|null)(?!\\s*:)\\b'
